@@ -42,7 +42,7 @@ class ItemController {
         try {
             const id = req.params.id;
             await db.collection("items").doc(id).delete();
-            res.send({ msg: "Deleted" });
+            res.send(1);
         } catch (error) {
             res.send(error);
         }
