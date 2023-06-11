@@ -5,7 +5,7 @@ class ItemController {
         try {
             const snapshot = await db.collection("items").get();
             const list = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
-            res.send(list);
+            res.json(list);
         } catch (error) {
             res.send(error)
         }
@@ -13,15 +13,15 @@ class ItemController {
 
     static async createItem(req, res) {
         try {
-            const { imageUrl, name, purchasePrice, sellPrice, stock } = req.body;
+            const { image, name, purchasePrice, sellPrice, stock } = req.body;
             await db.collection("items").add({
-                imageUrl: imageUrl,
+                image: image,
                 name: name,
                 purchasePrice: +purchasePrice,
                 sellPrice: +sellPrice,
                 stock: +stock
             });
-            res.send({ msg: "User Added" });
+            res.send({ msg: "Item Added" });
         } catch (error) {
             res.send(error)
         }

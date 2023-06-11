@@ -1,4 +1,4 @@
-const { bucket } = require('./firebase');
+const { bucket } = require('../middleware/firebase');
 
 const uploadImage = async (req, res, next) => {
     const file = bucket.file(`images/${req.file.originalname}`);
@@ -18,7 +18,11 @@ const uploadImage = async (req, res, next) => {
         };
         file.getSignedUrl(options)
             .then((url) => {
-                req.body.imageUrl = url[0];
+                // req.body.imageUrl = url[0];
+                req.body.image = {
+                    url: url[0],
+                    name: req.file.originalname
+                }
                 console.log('File uploaded successfully.');
                 next();
             })
