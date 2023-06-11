@@ -21,7 +21,7 @@ class ItemController {
                 sellPrice: +sellPrice,
                 stock: +stock
             });
-            res.send({ msg: "Item Added" });
+            res.json({ data: true });
         } catch (error) {
             res.send(error);
         }

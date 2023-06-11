@@ -6,7 +6,7 @@ const checkName = async (req, res, next) => {
         const list = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
         const result = list.filter((item) => item.name === req.body.name);
         if (result.length > 0) {
-            res.json({ msg: "Name already used" })
+            res.json({ data: false })
         } else {
             next();
         }
