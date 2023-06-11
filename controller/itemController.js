@@ -41,8 +41,8 @@ class ItemController {
     static async deleteItem(req, res) {
         try {
             const id = req.params.id;
-            await db.collection("items").doc(id).delete();
-            res.send(1);
+            const result = await db.collection("items").doc(id).delete();
+            res.send(result);
         } catch (error) {
             res.send(error);
         }
